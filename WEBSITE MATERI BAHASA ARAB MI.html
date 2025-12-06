@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Arab MI – Pembelajaran Interaktif</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset & Base Styles */
+        :root {
+            --primary-green: #1b5e20;
+            --light-green: #4caf50;
+            --gold: #ffc107;
+            --light-gold: #ffecb3;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--dark-gray);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background-color: var(--light-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #0d4211;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--gold);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            color: var(--primary-green);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--gold);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green) 0%, #2e7d32 100%);
+            color: var(--white);
+            padding: 150px 0 100px;
+            margin-top: 80px;
+            text-align: center;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* Materi Section */
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .materi-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            border-top: 5px solid var(--gold);
+        }
+
+        .materi-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 25px 25px 15px;
+        }
+
+        .card-header h3 {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header h3 i {
+            color: var(--gold);
+        }
+
+        .card-content {
+            padding: 0 25px 25px;
+        }
+
+        .card-content p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hijaiyah-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .hijaiyah-item {
+            background-color: var(--light-gold);
+            border-radius: 8px;
+            text-align: center;
+            padding: 10px 5px;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--light-gray);
+            color: var(--primary-green);
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Kosakata Section */
+        .kosakata-section {
+            background-color: var(--light-gray);
+        }
+
+        .kategori-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .kategori-btn {
+            background-color: var(--white);
+            color: var(--primary-green);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .kategori-btn.active, .kategori-btn:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-color: var(--gold);
+        }
+
+        .kosakata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .kosakata-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .kosakata-card:hover {
+            transform: scale(1.05);
+        }
+
+        .kosakata-image {
+            height: 150px;
+            background-color: var(--light-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .kosakata-card h4 {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            padding: 0 15px;
+        }
+
+        .kosakata-card p {
+            color: #666;
+            padding: 0 15px;
+        }
+
+        /* Audio Section */
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .audio-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 25px;
+            transition: var(--transition);
+            border-left: 5px solid var(--gold);
+        }
+
+        .audio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .audio-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .audio-btn {
+            background-color: var(--light-green);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            transition: var(--transition);
+        }
+
+        .audio-btn:hover {
+            background-color: var(--primary-green);
+        }
+
+        /* Latihan Section */
+        .latihan-section {
+            background-color: var(--light-gray);
+        }
+
+        .latihan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .latihan-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .latihan-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .latihan-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-green);
+            font-size: 2rem;
+        }
+
+        .latihan-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .latihan-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo .logo-icon {
+            width: 60px;
+            height: 60px;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4:after, .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--gold);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+            transition: var(--transition);
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--gold);
+            color: var(--dark-gray);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .materi-grid, .latihan-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: var(--shadow);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            nav ul li {
+                margin-bottom: 15px;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .materi-grid, .kosakata-grid, .audio-grid, .latihan-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kategori-buttons {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animasi */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">ع</div>
+                <div class="logo-text">Bahasa Arab <span>MI</span></div>
+            </div>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#materi">Materi</a></li>
+                    <li><a href="#kosakata">Kosakata</a></li>
+                    <li><a href="#audio">Audio</a></li>
+                    <li><a href="#latihan">Latihan</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Belajar Bahasa Arab dengan Mudah & Menyenangkan</h1>
+            <p>Materi lengkap sesuai kurikulum MI, dilengkapi audio, gambar, dan latihan interaktif untuk siswa Madrasah Ibtidaiyah.</p>
+            <a href="#materi" class="btn btn-primary">Mulai Belajar</a>
+        </div>
+    </section>
+
+    <!-- Materi Section -->
+    <section id="materi">
+        <div class="container">
+            <div class="section-title">
+                <h2>Materi Pembelajaran</h2>
+                <p>Kumpulan materi pembelajaran Bahasa Arab sesuai dengan kurikulum MI, disajikan dengan cara yang menarik dan mudah dipahami.</p>
+            </div>
+            
+            <div class="materi-grid">
+                <!-- Materi 1 -->
+                <div class="materi-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-font"></i> Huruf Hijaiyah</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-image">
+                            <span style="font-size: 4rem; font-family: 'Traditional Arabic';">أ ب ت ث</span>
+                        </div>
+                        <p>Huruf hijaiyah adalah huruf dalam abjad Arab yang terdiri dari 28 huruf. Setiap huruf memiliki cara pengucapan yang berbeda.</p>
+                        <div class="hijaiyah-grid">
+                            <div class="hijaiyah-item">ا</div>
+                            <div class="hijaiyah-item">ب</div>
+                            <div class="hijaiyah-item">ت</div>
+                            <div class="hijaiyah-item">ث</div>
+                            <div class="hijaiyah-item">ج</div>
+                            <div class="hijaiyah-item">ح</div>
+                            <div class="hijaiyah-item">خ</div>
+                        </div>
+                        <a href="#" class="btn" style="margin-top: 15px;">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+                
+                <!-- Materi 2 -->
+                <div class="materi-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-cube"></i> Kata Benda (Isim)</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-image">
+                            <i class="fas fa-book" style="font-size: 4rem;"></i>
+                        </div>
+                        <p>Isim adalah kata benda dalam bahasa Arab yang menunjukkan orang, benda, tempat, atau konsep.</p>
+                        <div class="table-container">
+                            <table>
+                                <tr>
+                                    <th>Kata Benda</th>
+                                    <th>Artinya</th>
+                                </tr>
+                                <tr>
+                                    <td>كِتَابٌ</td>
+                                    <td>Buku</td>
+                                </tr>
+                                <tr>
+                                    <td>قَلَمٌ</td>
+                                    <td>Pena</td>
+                                </tr>
+                                <tr>
+                                    <td>مَدْرَسَةٌ</td>
+                                    <td>Sekolah</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="#" class="btn" style="margin-top: 15px;">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+                
+                <!-- Materi 3 -->
+                <div class="materi-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-running"></i> Kata Kerja (Fi'il)</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-image">
+                            <i class="fas fa-walking" style="font-size: 4rem;"></i>
+                        </div>
+                        <p>Fi'il adalah kata kerja dalam bahasa Arab yang terbagi menjadi tiga: Madhi (lampau), Mudhari' (sekarang/mendatang), dan Amr (perintah).</p>
+                        <div class="table-container">
+                            <table>
+                                <tr>
+                                    <th>Jenis Fi'il</th>
+                                    <th>Contoh</th>
+                                    <th>Arti</th>
+                                </tr>
+                                <tr>
+                                    <td>Madhi</td>
+                                    <td>كَتَبَ</td>
+                                    <td>Telah menulis</td>
+                                </tr>
+                                <tr>
+                                    <td>Mudhari'</td>
+                                    <td>يَكْتُبُ</td>
+                                    <td>Sedang menulis</td>
+                                </tr>
+                                <tr>
+                                    <td>Amr</td>
+                                    <td>اُكْتُبْ</td>
+                                    <td>Tulislah!</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="#" class="btn" style="margin-top: 15px;">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+                
+                <!-- Materi 4 -->
+                <div class="materi-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-link"></i> Idhofah</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-image">
+                            <i class="fas fa-sitemap" style="font-size: 4rem;"></i>
+                        </div>
+                        <p>Idhofah adalah penyandaran kata yang menunjukkan kepemilikan atau hubungan antara dua kata.</p>
+                        <p><strong>Contoh:</strong> كِتَابُ الطَّالِبِ (buku siswa) - بَيْتُ المُدَرِّسِ (rumah guru)</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+                
+                <!-- Materi 5 -->
+                <div class="materi-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-comment-alt"></i> Mubtada' - Khabar</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-image">
+                            <i class="fas fa-comments" style="font-size: 4rem;"></i>
+                        </div>
+                        <p>Mubtada' adalah subjek dalam kalimat, sedangkan Khabar adalah predikat yang memberikan informasi tentang subjek.</p>
+                        <p><strong>Contoh:</strong> اَلطَّالِبُ مُجْتَهِدٌ (Siswa itu rajin)</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+                
+                <!-- Materi 6 -->
+                <div class="materi-card fade-in">
+                    <div class="card-header">
+                        <h3><i class="fas fa-users"></i> Percakapan Dasar (Hiwar)</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-image">
+                            <i class="fas fa-user-friends" style="font-size: 4rem;"></i>
+                        </div>
+                        <p>Percakapan sederhana untuk siswa MI dalam situasi sehari-hari seperti di sekolah, rumah, dan lingkungan sekitar.</p>
+                        <p><strong>Contoh:</strong> كَيْفَ حَالُكَ؟ (Apa kabarmu?) - أَنَا بِخَيْرٍ (Saya baik-baik saja)</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kosakata Section -->
+    <section id="kosakata" class="kosakata-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kosakata Bahasa Arab</h2>
+                <p>Pelajari kosakata Bahasa Arab berdasarkan kategori dengan gambar yang menarik untuk memudahkan menghafal.</p>
+            </div>
+            
+            <div class="kategori-buttons">
+                <button class="kategori-btn active" data-kategori="semua">Semua</button>
+                <button class="kategori-btn" data-kategori="sekolah">Sekolah</button>
+                <button class="kategori-btn" data-kategori="keluarga">Keluarga</button>
+                <button class="kategori-btn" data-kategori="warna">Warna</button>
+                <button class="kategori-btn" data-kategori="angka">Angka</button>
+                <button class="kategori-btn" data-kategori="benda">Benda Kelas</button>
+                <button class="kategori-btn" data-kategori="hewan">Hewan</button>
+            </div>
+            
+            <div class="kosakata-grid">
+                <!-- Kosakata items akan diisi oleh JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Section -->
+    <section id="audio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Audio Pembelajaran</h2>
+                <p>Dengarkan pelafalan huruf, kata, dan kalimat dalam Bahasa Arab yang benar untuk melatih kemampuan mendengar dan berbicara.</p>
+            </div>
+            
+            <div class="audio-grid">
+                <div class="audio-card fade-in">
+                    <h3><i class="fas fa-volume-up"></i> Pelafalan Huruf Hijaiyah</h3>
+                    <p>Dengarkan cara pengucapan huruf hijaiyah yang benar dengan makhraj yang tepat.</p>
+                    <audio controls>
+                        <source src="#" type="audio/mpeg">
+                        Browser Anda tidak mendukung pemutar audio.
+                    </audio>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+                
+                <div class="audio-card fade-in">
+                    <h3><i class="fas fa-volume-up"></i> Pelafalan Kata Benda</h3>
+                    <p>Pelajari cara mengucapkan kata-kata benda dalam Bahasa Arab dengan benar.</p>
+                    <audio controls>
+                        <source src="#" type="audio/mpeg">
+                        Browser Anda tidak mendukung pemutar audio.
+                    </audio>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+                
+                <div class="audio-card fade-in">
+                    <h3><i class="fas fa-volume-up"></i> Pelafalan Kalimat Sederhana</h3>
+                    <p>Dengarkan contoh percakapan sederhana dalam Bahasa Arab untuk latihan sehari-hari.</p>
+                    <audio controls>
+                        <source src="#" type="audio/mpeg">
+                        Browser Anda tidak mendukung pemutar audio.
+                    </audio>
+                    <button class="audio-btn"><i class="fas fa-play"></i> Putar Audio</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latihan Section -->
+    <section id="latihan" class="latihan-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latihan Interaktif</h2>
+                <p>Uji pemahaman Anda dengan berbagai latihan interaktif yang menarik dan mendidik.</p>
+            </div>
+            
+            <div class="latihan-grid">
+                <div class="latihan-card fade-in">
+                    <div class="latihan-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Pilihan Ganda</h3>
+                    <p>Pilih jawaban yang benar dari beberapa pilihan yang tersedia.</p>
+                    <button class="btn btn-primary">Mulai Latihan</button>
+                </div>
+                
+                <div class="latihan-card fade-in">
+                    <div class="latihan-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Cocokkan Gambar</h3>
+                    <p>Cocokkan gambar dengan kosakata Bahasa Arab yang sesuai.</p>
+                    <button class="btn btn-primary">Mulai Latihan</button>
+                </div>
+                
+                <div class="latihan-card fade-in">
+                    <div class="latihan-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3>Menjodohkan Kosakata</h3>
+                    <p>Pasangkan kosakata Bahasa Arab dengan artinya dalam Bahasa Indonesia.</p>
+                    <button class="btn btn-primary">Mulai Latihan</button>
+                </div>
+                
+                <div class="latihan-card fade-in">
+                    <div class="latihan-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h3>Input Jawaban Singkat</h3>
+                    <p>Tulis jawaban singkat berdasarkan pertanyaan yang diberikan.</p>
+                    <button class="btn btn-primary">Mulai Latihan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="tentang">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">ع</div>
+                        <h3>Bahasa Arab MI</h3>
+                    </div>
+                    <p>Website pembelajaran Bahasa Arab interaktif untuk siswa Madrasah Ibtidaiyah dengan materi lengkap sesuai kurikulum, audio, gambar, dan latihan interaktif.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#materi">Materi Pembelajaran</a></li>
+                        <li><a href="#kosakata">Kosakata</a></li>
+                        <li><a href="#audio">Audio</a></li>
+                        <li><a href="#latihan">Latihan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Kontak</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Madrasah Ibtidaiyah, Indonesia</p>
+                    <p><i class="fas fa-envelope"></i> info@bahasaarabmi.sch.id</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Bahasa Arab MI – Pembelajaran Interaktif. Website ini dibuat untuk pembelajaran MI.</p>
+                <p>Dikembangkan dengan <i class="fas fa-heart" style="color: var(--gold);"></i> untuk pendidikan Bahasa Arab</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Data kosakata
+        const kosakataData = [
+            { kategori: "sekolah", arab: "مَدْرَسَةٌ", latin: "madrasatun", arti: "sekolah", icon: "fas fa-school" },
+            { kategori: "sekolah", arab: "مُعَلِّمٌ", latin: "mu'allimun", arti: "guru", icon: "fas fa-chalkboard-teacher" },
+            { kategori: "sekolah", arab: "طَالِبٌ", latin: "thalibun", arti: "siswa", icon: "fas fa-user-graduate" },
+            { kategori: "sekolah", arab: "كِتَابٌ", latin: "kitabun", arti: "buku", icon: "fas fa-book" },
+            { kategori: "keluarga", arab: "أَبٌ", latin: "abun", arti: "ayah", icon: "fas fa-male" },
+            { kategori: "keluarga", arab: "أُمٌّ", latin: "ummun", arti: "ibu", icon: "fas fa-female" },
+            { kategori: "keluarga", arab: "أَخٌ", latin: "akhun", arti: "saudara laki", icon: "fas fa-user" },
+            { kategori: "keluarga", arab: "أُخْتٌ", latin: "ukhtun", arti: "saudara perempuan", icon: "fas fa-user" },
+            { kategori: "warna", arab: "أَحْمَرُ", latin: "ahmaru", arti: "merah", icon: "fas fa-palette" },
+            { kategori: "warna", arab: "أَخْضَرُ", latin: "akhdharu", arti: "hijau", icon: "fas fa-palette" },
+            { kategori: "warna", arab: "أَزْرَقُ", latin: "azraq", arti: "biru", icon: "fas fa-palette" },
+            { kategori: "warna", arab: "أَصْفَرُ", latin: "ashfaru", arti: "kuning", icon: "fas fa-palette" },
+            { kategori: "angka", arab: "وَاحِدٌ", latin: "wahidun", arti: "satu", icon: "fas fa-sort-numeric-up" },
+            { kategori: "angka", arab: "اِثْنَانِ", latin: "itsnani", arti: "dua", icon: "fas fa-sort-numeric-up" },
+            { kategori: "angka", arab: "ثَلَاثَةٌ", latin: "thalathatun", arti: "tiga", icon: "fas fa-sort-numeric-up" },
+            { kategori: "angka", arab: "أَرْبَعَةٌ", latin: "arba'atun", arti: "empat", icon: "fas fa-sort-numeric-up" },
+            { kategori: "benda", arab: "قَلَمٌ", latin: "qalamun", arti: "pensil", icon: "fas fa-pencil-alt" },
+            { kategori: "benda", arab: "مِمْحَاةٌ", latin: "mimhatun", arti: "penghapus", icon: "fas fa-eraser" },
+            { kategori: "benda", arab: "مِسْطَرَةٌ", latin: "mistharatun", arti: "penggaris", icon: "fas fa-ruler" },
+            { kategori: "benda", arab: "حَقِيْبَةٌ", latin: "haqibatun", arti: "tas", icon: "fas fa-briefcase" },
+            { kategori: "hewan", arab: "قِطٌّ", latin: "qiththun", arti: "kucing", icon: "fas fa-cat" },
+            { kategori: "hewan", arab: "كَلْبٌ", latin: "kalbun", arti: "anjing", icon: "fas fa-dog" },
+            { kategori: "hewan", arab: "أَسَدٌ", latin: "asadun", arti: "singa", icon: "fas fa-paw" },
+            { kategori: "hewan", arab: "فِيْلٌ", latin: "fiilun", arti: "gajah", icon: "fas fa-hippo" }
+        ];
+
+        // Inisialisasi ketika DOM siap
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup tahun di footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Setup menu mobile toggle
+            const mobileToggle = document.getElementById('mobileToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            mobileToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                mobileToggle.querySelector('i').classList.toggle('fa-bars');
+                mobileToggle.querySelector('i').classList.toggle('fa-times');
+            });
+            
+            // Setup smooth scrolling untuk anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Tutup menu mobile jika terbuka
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileToggle.querySelector('i').classList.remove('fa-times');
+                        mobileToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Setup filter kategori kosakata
+            setupKosakataFilter();
+            
+            // Setup animasi scroll
+            setupScrollAnimation();
+            
+            // Setup audio player
+            setupAudioPlayers();
+        });
+
+        // Fungsi untuk setup filter kategori kosakata
+        function setupKosakataFilter() {
+            const kategoriButtons = document.querySelectorAll('.kategori-btn');
+            const kosakataGrid = document.querySelector('.kosakata-grid');
+            
+            // Render semua kosakata pertama kali
+            renderKosakata('semua');
+            
+            // Tambahkan event listener untuk setiap tombol kategori
+            kategoriButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Hapus kelas active dari semua tombol
+                    kategoriButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Tambahkan kelas active ke tombol yang diklik
+                    this.classList.add('active');
+                    
+                    // Ambil kategori dari data attribute
+                    const kategori = this.getAttribute('data-kategori');
+                    
+                    // Render kosakata berdasarkan kategori
+                    renderKosakata(kategori);
+                });
+            });
+            
+            // Fungsi untuk merender kosakata berdasarkan kategori
+            function renderKosakata(kategori) {
+                // Kosongkan grid
+                kosakataGrid.innerHTML = '';
+                
+                // Filter data berdasarkan kategori
+                let filteredData = kosakataData;
+                if (kategori !== 'semua') {
+                    filteredData = kosakataData.filter(item => item.kategori === kategori);
+                }
+                
+                // Render setiap item kosakata
+                filteredData.forEach(item => {
+                    const kosakataCard = document.createElement('div');
+                    kosakataCard.className = 'kosakata-card fade-in';
+                    kosakataCard.innerHTML = `
+                        <div class="kosakata-image">
+                            <i class="${item.icon}"></i>
+                        </div>
+                        <h4>${item.arab}</h4>
+                        <p><strong>${item.latin}</strong></p>
+                        <p>${item.arti}</p>
+                    `;
+                    kosakataGrid.appendChild(kosakataCard);
+                });
+                
+                // Setup animasi untuk kartu baru
+                setupScrollAnimation();
+            }
+        }
+
+        // Fungsi untuk setup animasi scroll
+        function setupScrollAnimation() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Jalankan sekali saat load
+            fadeInOnScroll();
+            
+            // Jalankan saat scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+        }
+
+        // Fungsi untuk setup audio players
+        function setupAudioPlayers() {
+            const audioButtons = document.querySelectorAll('.audio-btn');
+            
+            audioButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const audioElement = this.parentElement.querySelector('audio');
+                    
+                    if (audioElement.paused) {
+                        audioElement.play();
+                        this.innerHTML = '<i class="fas fa-pause"></i> Jeda Audio';
+                    } else {
+                        audioElement.pause();
+                        this.innerHTML = '<i class="fas fa-play"></i> Putar Audio';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
